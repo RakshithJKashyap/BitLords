@@ -41,3 +41,23 @@ def logout(request):
     return render(request, 'signin.html')
 def singUP(request):
     return render(request,'signup.html')
+
+def postsignup(request):
+    name= request.POST.get('name')
+    email= request.POST.get('email')
+    passw= request.POST.get('pass')
+    try:
+        user = authe.create_user_with_email_and_password(email, passw)
+        uid=user['localId']
+        data={'name':name,'status':'1'}
+        database.child('users').child(uid).child('details').set(data)
+    except:
+        message="unable to create"
+        return render(request, "signup.html",{"messg":message})
+    return render(request,"signin.html")
+
+def create(request):
+    return render(request,"post.html")
+
+def check(request):
+    return render(request,"blog.html")

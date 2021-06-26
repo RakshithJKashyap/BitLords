@@ -13,4 +13,7 @@ urlpatterns = [
     path('postsign/',views.postsign),
     path('logout/',views.logout,name='log'),
     path('signup/',views.singUP, name='signup'),
+    path('postsignup/',views.postsignup, name='postsignup'),
+    path('create/',views.create, name='create'),
+    path('check/',views.check, name='check'),
 ]
