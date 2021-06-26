@@ -23,3 +23,21 @@ def index(request):
 
 def singIN(request):
     return render(request,'signin.html')
+
+def postsign(request):
+    email=request.POST.get('email')
+    passw=request.POST.get('pass')
+    try:
+        user = authe.sign_in_with_email_and_password(email, passw)
+    except:
+        message='Invalid credentials'
+        return render(request, "signin.html",{"messg":message})
+    session_id=user['idToken']
+    request.session['uid']=(session_id)
+    return render(request,'welcome.html')
+
+def logout(request):
+    auth.logout(request)
+    return render(request, 'signin.html')
+def singUP(request):
+    return render(request,'signup.html')
