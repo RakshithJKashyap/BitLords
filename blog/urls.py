@@ -8,12 +8,19 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
-    path('signin/',views.singIN,name='signin'),
+    path('',views.singIN,name='signin'),
     path('postsign/',views.postsign),
     path('logout/',views.logout,name='log'),
     path('signup/',views.singUP, name='signup'),
     path('postsignup/',views.postsignup, name='postsignup'),
     path('create/',views.create, name='create'),
+    path('post_create/',views.post_create, name='post_create'),
     path('check/',views.check, name='check'),
+    path('post_check/',views.post_check, name='post_check'),
+    path('about/',views.about, name='about'),
+    path('home/',views.home, name='home'),
 ]
+
+if settings.DEBUG:
+    urlpatterns +=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns +=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

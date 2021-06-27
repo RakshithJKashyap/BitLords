@@ -1,0 +1,96 @@
+*{
+    padding:10px;
+    margin:0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+body, html{
+    background-image: url("../image/image.jpeg");
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}
+
+input{
+    border-style: double;
+    border-width: 6px;
+}
+ 
+textarea{
+    border-style: double;
+    border-width: 6px;
+
+}
+.form-row h3{
+    color: black;
+    text-align:left;
+    text-decoration: none;
+    text-transform:uppercase;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+input[type=text]{
+    width: 35%;
+    padding: 8px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 3px solid #ccc;
+
+    box-sizing: border-box;
+}
+textarea {
+    width: 80%;
+    height: 150px;
+    padding: 20px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    background-color: #f8f8f8;
+    font-size: 18px;
+    resize: none;
+    border-style: double;
+    border-width: 6px;
+}
+input[type=file]{
+    border: none;
+}
+.submit{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 10%;
+    background-color: black;
+    color: white;
+    border-radius: 4px ;
+    font-weight: bold;
+
+}
+.submit:hover{
+    background: white;
+    border: 1px solid;
+
+    color:black;
+}
+
+.upload{
+    border: none;
+    outline: none;
+    height: 35px;
+    width: 8%;
+    background-color: black;
+    color: white;
+    border-radius: 4px ;
+    font-weight: bold;
+
+}
+.upload:hover{
+    background: white;
+    border: 1px solid;
+
+    color:black;
+}
+
+.new{
+    padding :20px;
+}

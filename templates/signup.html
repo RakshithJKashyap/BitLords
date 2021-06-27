@@ -2,25 +2,120 @@
 <script>alert('{{messg}}');
 </script>
 {% endif%}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign UP</title>
-</head>
-<body>
-    <form action='/postsignup/' method="post">
-        {% csrf_token %}
-        Name:
-        <input type="text" name="name"><br>
-        Email :
-        <input type="email" name="email"><br>
-        Password :
-        <input type="password" name="pass">
-        <input type="submit" value="SignUp">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    
+    <title>BLOG-SignUp</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            box-sizing: border-box;
+        }
+        .section{
+            width: 100%;
+            min-height: 100vh;
+            
+        }
+        body ,html{
+            background-image: url("../static/image/image.jpeg") ; 
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;   
+            text-align: auto;  
+
+        }
+        .container{
+            width: 200%;
+            display: flex; 
+            /* flex-direction: column; */
+            /* margin:auto; */
+            padding: 50px;
+            align-items: center;  
+            justify-content: center;
+            
+        }
+
+        .row{
+            max-width: 100%;
+            background: white;
+            /* align-self: center; */
+            padding: 10px;
+            border-radius: 30px;
+            box-shadow: 12px 12px 12px ;
+            
+        }
         
-    </form>
-</body>
+        .submit{
+            border: none;
+            outline: none;
+            height: 50px;
+            width: 100%;
+            background-color: black;
+            color: white;
+            border-radius: 4px ;
+            font-weight: bold;
+        }
+        .submit:hover{
+            background: white;
+            border: 1px solid;
+            color:black;
+        }
+       
+    </style>
+    
+  </head>
+  <body>
+     <section class="Form">
+                <div id="centre">
+                    <div class="container my-5">
+                        <div class="row no-gutters my-4">
+                            <div class="col">
+                                <h3 class="font-weight-bold py-3">Words of Wonder</h3>
+                                <h4>Sign Up</h4>
+                                <form action='/postsign/' method="post">
+                                    {% csrf_token %}
+                                    <div class="form-row">
+                                        <div class="col-xl-12">
+                                            <h6>NAME:</h6>
+                                            <input type="text" placeholder="Enter Full Name" name="name" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-xl-12 my-4">
+                                            <h6>EMAIL:</h6>
+                                            <input type="email" placeholder="Enter Email-Address" name="email" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-xl-12 my-4">
+                                            <h6>PASSWORD:</h6>
+                                            <input type="password" placeholder="Enter Password" name="pass" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-xl-12">
+                                            <input type="submit" class="submit mt-1 mb-5" value="SignUp">
+                                        </div>
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js" integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ" crossorigin="anonymous"></script>
+    
+  </body>
 </html>

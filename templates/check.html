@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+        
+        body {
+          margin: 0;
+          font-family: Arial;
+        }
+        
+        .header {
+          text-align: center;
+          padding: 32px;
+        }
+        
+        /* Create two equal columns that floats next to each other */
+        .column {
+          float: left;
+          width: 48%;
+          height: 400px;
+          padding: 20px;
+          padding-left: 20px;
+          margin: 1%;
+        }
+        
+        .column img {
+          margin-top: 12px;
+        }
+        
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        </style>
+        
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOG</title>
+
+    <!--font icon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
+
+   
+    <!-- style-->
+    <link rel="stylesheet" href="../static/style/Style1.css">
+
+
+</head>
+<body>
+ 
+    
+    <!--- Header-->
+    <header id="header" class="class bg-light">
+        <nav class="container navbar">
+            <a href="/index.html"class="nav-brand text-dark">
+                 BLOG
+            </a>
+
+            <!---Toggle button-->
+            <button class="toggle-button">
+                <span><i class="fas fa-bars"></i>
+                </span>
+            </button>
+
+            <div class="collapse">
+                <ul class="navbar-nav">
+                    <a href="{% url 'home' %}" class="nav-link">Home</a>
+                    <a href="{% url 'check' %}" class="nav-link">Pages</a>
+                    <a href="{% url 'signup' %}" class="nav-link">Categories</a>
+                    <a href="{% url 'about' %}" class="nav-link">About</a>
+                    
+                </ul>
+            </div>
+
+
+            <div class="collapse">
+                <ul class="navbar-nav">
+                    <div class="search-box">
+                        <a href="#" class="nav-link"><i class="fas fa-search"></i></a>
+                    </div>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap');
+
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Lexend", sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    color: #393232;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+.scroll{
+    
+    display: flex;
+    overflow-x:auto;
+}
+.scroll::-webkit-scrollbar{
+    width: 1;
+}
+.card{
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 0 0 1px ;
+    background-color: #FFF;
+    border-radius: 15px;
+    overflow-x: auto;
+    display: flex;
+    padding: 5rem;
+    position: relative;
+    transition: .15s ease-in;
+    min-width: 400px;
+    margin: 1rem ;
+    margin-top: 50%;
+}
+
+
+.card-list {
+    background-color: #FFF;
+    box-shadow: 0 0 0 1px rgba(#000, .05), 0 20px 50px 0 rgba(#000, .1);
+    border-radius: 15px;
+    overflow: auto;
+    padding: 1.25rem;
+    position: relative;
+    transition: .15s ease-in;
+    min-width: 80%;
+    
+}
+
+.card-list:hover, .card-list:focus-within {
+        box-shadow: 0 0 0 2px #16C79A, 0 10px 60px 0 rgba(#000, .1);
+            transform: translatey(-5px);
+    }
+
+.card-image {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-header {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    
+    
+}
+
+a.card-header {
+        font-weight: 600;
+        font-size: 1.375rem;
+        line-height: 1.25;
+        padding-right: 1rem;
+        text-decoration: none;
+        color: inherit;
+        
+    }
+
+    a.card-header:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+.icon-button {
+    border: 0;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    transition: .25s ease;
+    box-shadow: 0 0 0 1px rgba(#000, .05), 0 3px 8px 0 rgba(#000, .15);
+    z-index: 1;
+    cursor: pointer;
+    color: #565656;
+    
+
+}
+
+.card-footer {
+    margin-top: 1.25rem;
+    border-top: 1px solid #ddd;
+    padding-top: 1.25rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card-meta {    
+    display: flex;
+    align-items: center;
+    color: #787878;
+
+
+}
+
+    .card-meta:first-child:after {
+        display: block;
+        content: "";
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: currentcolor;
+        margin-left: .75rem;
+        margin-right: .75rem;
+    }
+    
+    body ,html{
+    background-image: url("../static/image/image.jpeg") ; 
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: auto;
+}
+.title{
+    padding: auto;
+    margin: auto;
+    text-align: center;
+    
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="title"><h1>POSTS</h1></div>
+    <div class='scroll'>
+    {% for time,dat,title,name,i in comb_lis %}
+    <a href="/post_check/?z={{time}}">
+    <div class="card" >
+        
+        <div class="card-list">
+    <article class="cardx">
+    <figure class="card-image">
+        <img src="{{i}}" alt="Image Not Available" />
+    </figure>
+    <div class="card-header">
+        {{title}}
+          
+    </div>
+    <div class="card-footer">
+        {{dat}}
+        
+    </div>
+</article>
+</div>
+    </div>
+</a>
+<br>
+    {% endfor %}
+    <br>
+</div>
+</body>
+</html>

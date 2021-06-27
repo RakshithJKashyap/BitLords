@@ -23,7 +23,6 @@ def index(request):
 
 def singIN(request):
     return render(request,'signin.html')
-
 def postsign(request):
     email=request.POST.get('email')
     passw=request.POST.get('pass')
@@ -39,6 +38,7 @@ def postsign(request):
 def logout(request):
     auth.logout(request)
     return render(request, 'signin.html')
+
 def singUP(request):
     return render(request,'signup.html')
 
@@ -55,9 +55,79 @@ def postsignup(request):
         message="unable to create"
         return render(request, "signup.html",{"messg":message})
     return render(request,"signin.html")
-
 def create(request):
     return render(request,"post.html")
 
+def post_create(request):
+    import time
+    from datetime import datetime, timezone
+    import pytz
+    tz=pytz.timezone('Asia/Kolkata')
+    time_now=datetime.now(timezone.utc).astimezone(tz)
+    millis= int(time.mktime(time_now.timetuple()))
+   
+    idtoken=request.session['uid']
+    a=authe.get_account_info(idtoken)
+    a=a['users']
+    a=a[0]
+    print(str(a))
+    a=a['localId']
+    title=request.POST.get('title')
+    content=request.POST.get('content')
+    url=request.POST.get('url')
+    name=request.POST.get('author_name')
+    data={
+        'title':title,
+        'content':content,
+        'uid':a,
+        'url':url,
+        'name':name
+    }
+    database.child('users').child('Posts').child(millis).set(data)
+    return render(request,"welcome.html")
+
 def check(request):
-    return render(request,"blog.html")
+    import datetime
+    user=database.child('users').get()
+    a=database.child('users').shallow().get()
+    lis_time=[]
+    post=[]
+    date=[]
+    name=[]
+    u=[]
+    timestamps=database.child('users').child('Posts').shallow().get().val()
+    for i in timestamps:
+        lis_time.append(i)
+    lis_time.sort(reverse=True)
+    for i in lis_time:
+        title=database.child('users').child('Posts').child(i).child('title').get().val()
+        post.append(title)
+    for i in lis_time:
+        i=float(i)
+        dat=datetime.datetime.fromtimestamp(i).strftime('%H:%M %d-%m-%Y')
+        date.append(dat)
+    for i in lis_time:
+        n=database.child('users').child('Posts').child(i).child('name').get().val()
+        name.append(n)
+    for i in lis_time:
+        ur=database.child('users').child('Posts').child(i).child('url').get().val()
+        u.append(ur)
+    comb_lis=zip(lis_time,date,post,name,u)
+    return render(request,'check.html',{'comb_lis':comb_lis})
+        
+def post_check(request):
+    import datetime
+    time=request.GET.get('z')
+    Title=database.child('users').child('Posts').child(time).child('title').get().val()
+    Content=database.child('users').child('Posts').child(time).child('content').get().val()
+    Author=database.child('users').child('Posts').child(time).child('name').get().val()
+    i= float(time)
+    dat=datetime.datetime.fromtimestamp(i).strftime('%H:%M %d-%m-%Y')
+    img_url=database.child('users').child('Posts').child(time).child('url').get().val()
+    return render(request,'blog.html',{'t':Title,'c':Content,'d':dat,"i":img_url,'a':Author})
+
+def about(request):
+    return render(request,"about.html")
+
+def home(request):
+    return render(request,"welcome.html")

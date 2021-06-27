@@ -1,18 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
+
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+        
+        body {
+          margin: 0;
+          font-family: Arial;
+        }
+        
+        .header {
+          text-align: center;
+          padding: 32px;
+        }
+        
+        /* Create two equal columns that floats next to each other */
+        .column {
+          float: left;
+          width: 48%;
+          height: 400px;
+          padding: 20px;
+          padding-left: 20px;
+          margin: 1%;
+        }
+        
+        .column img {
+          margin-top: 12px;
+        }
+        
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        </style>
+        
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BLOG</title>
+
+    <!--font icon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
+
+   
+    <!-- style-->
+    <link rel="stylesheet" href="../static/style/Style1.css">
+
+
 </head>
 <body>
+ 
     
-    Welcome {{e}}
-  <button type="button" onclick="location.href='{% url 'create' %}'">Create Post</button>
-  <button type="button" onclick="location.href='{% url 'check' %}'">Posts
-    
-    
-</body>
+    <!--- Header-->
+    <header id="header" class="class bg-light">
+        <nav class="container navbar">
+            <a href="/index.html"class="nav-brand text-dark">
+                 BLOG
+            </a>
 
-</html>
+            <!---Toggle button-->
+            <button class="toggle-button">
+                <span><i class="fas fa-bars"></i>
+                </span>
+            </button>
+
+            <div class="collapse">
+                <ul class="navbar-nav">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">Pages</a>
+                    <a href="#" class="nav-link">Categories</a>
+                    <a href="#" class="nav-link">About</a>
+                    <a href="#" class="nav-link">Contact</a>
+                </ul>
+            </div>
+
+
+            <div class="collapse">
+                <ul class="navbar-nav">
+                    <div class="search-box">
+                        <a href="#" class="nav-link"><i class="fas fa-search"></i></a>
+                    </div>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!--Main---------------------------->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../static/style/Style1.css">
+        <title>WELCOME</title>
+    
+    </head>
+    <body>
+        <br><h1>WORDS OF WONDER</h1>
+            <div class="section">
+                <div class="container">
+                    <div class="content_section">
+    
+                            <h4> You must have read a lot about the importance of writing for your readers.</h4> 
+                            <h4> While this is a good thing to do, it is also true that in order to capture an audience for your blog, you need to write for yourself first.</h4>
+                            <h4> Your blog your personal space , and it reflects your identity and your individual voice .</h4>
+                            <h4> You might not capture thousands of fans in a day, in a month, or even in a year, but if your blog post is helping even one person, its creation has been worth your time.</h4>
+                            <h4> Just stick to your niche and write anything that interests you within that niche.</h4>
+                            <h4> There is always a motive behind blogging.</h4>
+    
+                    </div>
+                </div>
+                    <p align="center">
+                        <button class="button" type="button" onclick="location.href='{% url 'create' %}'">Create Post</button>
+                        <button class="button" type="button" onclick="location.href='{% url 'check' %}'">Posts</button>
+                    </p>
+                    <div class="container1">
+                        <div class="content_section1"></div>
+                            <h3>Community Guidelines</h3>
+                                <ul>
+                                    <li>Keep comments to the subject matter of the post on which you are commenting.</li>
+                                    <li>Don’t post anything that contains any material that is abusive, vulgar, obscene, hateful, fraudulent, unlawful, threatening, or harrassing towards any person whether a user on this blog or not.</li>
+                                    <li>Don’t plagiarize.</li>
+                                    <li>Don’t defame others</li>
+                                    <li>Don’t use posts to promote products or services</li>
+                                    <li>Don’t post any medical advice on our blogs, or accept any medical advice from other users.</li>
+                                    <li>You are responsible for the content of any messages that you post</li>
+                                </ul>
+                        </div>
+                    </div>
+            </div>
+    
+    
+    </body>
+    
+    </html>
+

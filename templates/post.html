@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+        
+        body {
+          margin: 0;
+          font-family: Arial;
+        }
+        
+        .header {
+          text-align: center;
+          padding: 32px;
+        }
+        
+        /* Create two equal columns that floats next to each other */
+        .column {
+          float: left;
+          width: 48%;
+          height: 400px;
+          padding: 20px;
+          padding-left: 20px;
+          margin: 1%;
+        }
+        
+        .column img {
+          margin-top: 12px;
+        }
+        
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        </style>
+        
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOG</title>
+
+    <!--font icon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
+
+   
+    <!-- style-->
+    <link rel="stylesheet" href="../static/style/Style1.css">
+
+
+</head>
+<body>
+ 
+    
+    <!--- Header-->
+    <header id="header" class="class bg-light">
+        <nav class="container navbar">
+            <a href="/index.html"class="nav-brand text-dark">
+                 BLOG
+            </a>
+
+            <!---Toggle button-->
+            <button class="toggle-button">
+                <span><i class="fas fa-bars"></i>
+                </span>
+            </button>
+
+            <div class="collapse">
+                <ul class="navbar-nav">
+                    <a href="{% url 'home' %}" class="nav-link">Home</a>
+                    <a href="{% url 'check' %}" class="nav-link">Pages</a>
+                    <a href="{% url 'signup' %}" class="nav-link">Categories</a>
+                    <a href="{% url 'about' %}" class="nav-link">About</a>
+                    
+                </ul>
+            </div>
+
+
+            <div class="collapse">
+                <ul class="navbar-nav">
+                    <div class="search-box">
+                        <a href="#" class="nav-link"><i class="fas fa-search"></i></a>
+                    </div>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style/postcreate.css">
+    <title>Document</title>
+</head>
+
+<body>
+    
+    
+    <form  action='/post_create/' method="post" >
+        {% csrf_token %}
+         <div class="form-row">
+             <div class="col-lg-7">
+                 <h2>Title :</h2>
+                 <input type="text"  name="title" >
+                 <h2>Author Name:</h2>
+                 <input type="text"  name="author_name" >
+                 <h2>Thumbnail Image :</h2>
+                 <input type="file" name="files[]" id="files">
+                 <input type="hidden" name="url" id="url">
+
+                 <button class="upload" type="button" onclick="uploadimage()">Upload</button>
+                 <h2>Content :</h2>
+                 <div >
+                 <textarea  name='content'></textarea>
+                 </div>
+              </div>
+          </div>
+          <div class = "new">
+            <p align="left">
+                <input class="submit" type="submit"  value="Submit">
+              </p>
+          </div>
+           
+          
+         
+     </form>
+    
+    
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+<script>
+var config = {
+apiKey: "AIzaSyAtz2cuDcPHqAuQeWRzwTLhhWTZq_I1_XU",
+authDomain: "hackathon-e6a4d.firebaseapp.com",
+databaseURL: "https://hackathon-e6a4d-default-rtdb.firebaseio.com",
+storageBucket:"hackathon-e6a4d.appspot.com",
+messagingSenderId: "147102212882"
+};
+firebase.initializeApp(config);
+
+// Get a reference to the storage service, which is used to create references in your storage bucket
+//var storage = firebase.storage().ref('folder_name/file_name.')
+function uploadimage(){
+var storage = firebase.storage();
+var file=document.getElementById("files").files[0];
+var storageref=storage.ref();
+
+var thisref=storageref.child(file.name).put(file);
+thisref.on('state_changed',function(snapshot) {
+console.log('Done');
+
+}, function(error) {
+console.log('Error',error);
+
+}, function() {
+// Uploaded completed successfully, now we can get the download URL
+thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+  console.log('File available at', downloadURL);
+  document.getElementById("url").value=downloadURL;
+  alert('uploaded successfuly');
+});
+});
+
+}
+</script>
+</html>
