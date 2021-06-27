@@ -9,7 +9,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.singIN,name='signin'),
-    path('postsign/',views.postsign),
+    path('postsign/',views.postsign,name='postsign'),
     path('logout/',views.logout,name='log'),
     path('signup/',views.singUP, name='signup'),
     path('postsignup/',views.postsignup, name='postsignup'),
